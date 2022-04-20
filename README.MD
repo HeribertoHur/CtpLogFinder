@@ -19,3 +19,10 @@ A list of technologies used within the project:
 ### Selenium Documentation:
 *** 
 - https://selenium-python.readthedocs.io/
+
+### Visual Finder App
+*** 
+- On this version the user can select a project using a dropbox and write the serial number on a Special TextBox, 
+  The app makes a excel file with all the posibles LogFiles
+- Developed using Tkinter to make GUI
+- openpyxl was used to create an manipulate excel sheets
