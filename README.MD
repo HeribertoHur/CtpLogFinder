@@ -26,3 +26,9 @@ A list of technologies used within the project:
   The app makes a excel file with all the posibles LogFiles
 - Developed using Tkinter to make GUI
 - openpyxl was used to create an manipulate excel sheets
+
+### EXECUTABLE VERSION:
+*** 
+- You can find on this repository a CtpLogFinder.zip file, this is a executable version to use on others computers
+- You need to Active the VPN
+- Run the file -> VisualLogFinder

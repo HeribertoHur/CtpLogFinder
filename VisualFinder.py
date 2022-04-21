@@ -1,9 +1,11 @@
 from tkinter import *
+from tkinter import messagebox
+from tkinter.messagebox import showwarning
+from turtle import width
 from selenium import webdriver
 from openpyxl import Workbook
-from datetime import date
 
-PATH = "C:\Driver\chromedriver.exe"
+PATH = "driver\chromedriver.exe"
 
 #Variables Declaration
 listOfTesters = []
@@ -11,10 +13,9 @@ listOfPossibleResults = []
 
 window = Tk()
 window.title("CTP LOG FINDER")
-window.geometry('400x150')
-window.iconbitmap('find.ico')
+window.geometry('300x120')
 
-Thor = ["gdlctp7034/","gdlctp7065/", "gdlctp7033/", "gdlctp7053/", "gdlctp7070/", "gdlctp7035/", "gdlctp7036/", "gdlctp7068/" ]
+Thor = ["gdlctp7034/","gdlctp7065/", "gdlctp7033/", "gdlctp7053/", "gdlctp7070/", "gdlctp7035/", "gdlctp7036/", "gdlctp7068/"]
 CTOATO = ["gdlctp70110/", "gdlctp7027/", "gdlctp7031/", "gdlctp7032/"]
 Oracle = ["gdlctp7013/","gdlctp7042/","gdlctp7061/","gdlctp7062/","gdlctp7122/","gdlctp7124/","gdlctp7126/",
           "gdlctp7128/","gdlctp7043/","gdlctp7044/","gdlctp7051/","gdlctp7052/","gdlctp7055/","gdlctp7057/","gdlctp7058/","gdlctp7059/"]
@@ -64,23 +65,28 @@ def getLogs(Seriales, testers):
      
 # SERIAL EXAMPLE:  SGFGD2214654524             
 def createResultSheet(resultLogs):
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Examples"
-    for log in resultLogs:
-        ws.append([log])
-    wb.save("ejemplo" + '.xlsx')
+    if resultLogs != []:
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Examples"
+        for log in resultLogs:
+            ws.append([log])
+        wb.save("LogFiles" + '.xlsx')
+        messagebox.showinfo('information', 'Se ha creado un documento con los logs obtenidos!')
+    else:
+        messagebox.showwarning('warning', 'No se encontro ningun resultado')
+    
     
 #DropDown Project Selector
 clicked = StringVar()
 clicked.set("Project")
 dropSelector = OptionMenu(window, clicked, "Thor", "CTOATO","Oracle")
-dropSelector.pack()
+dropSelector.pack(pady=5)
 
 #InputFieldWithMultipleOption
-MultipleSerial_entry = Entry(window)
-MultipleSerial_entry = Text(height=3,width=40)
+MultipleSerial_entry = Entry(window, width=30)
+MultipleSerial_entry.get()
 MultipleSerial_entry.pack(pady=5)
-Button(window, text="Find Serial",pady=5,height=1, width=30,command=getInitialMultipleData).pack()
+Button(window, text="Find Serial",pady=5,command=getInitialMultipleData).pack()
 
 window.mainloop()
